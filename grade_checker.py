@@ -1,15 +1,16 @@
-from alerts import open_alert
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 import time
 import logging
 import config as cfg
+from notification_services.stdout_service import StdoutService
 
 
 class GradeChecker(object):
     @staticmethod
-    def grade_is_published(website_url, user, passwd, module_name, browser=cfg.DEFAULT_BROWSER):
+    def grade_is_published(website_url, user, passwd, module_name, browser=cfg.DEFAULT_BROWSER,
+                           notification_service=StdoutService()):
         """
         Login into a grade management system and verify that module grade was published or not.
         :param website_url: URL to the grade management system.
@@ -17,6 +18,7 @@ class GradeChecker(object):
         :param passwd: Password for grade management system.
         :param module_name: Module to check.
         :param browser: Desired browser.
+        :param notification_service: Desired platform to publish message when grade is online.
         :return: True if grade is published, False otherwise.
         """
 
@@ -63,8 +65,7 @@ class GradeChecker(object):
         grade_published = module_name not in html_source
 
         if grade_published:
-            logging.info(f"NOTE FÜR {module_name} EINGETRAGEN!")
-            open_alert("%s ist eingetragen" % module_name, "Note eingetragen!")
+            notification_service.notify("Note eintragen", "Note für %s online!" % module_name)
         else:
             logging.info(f"Note für {module_name} nicht eingetragen!")
 
