@@ -17,3 +17,10 @@ CONTENT_ELEM_ID     = 'wrapper'
 LOGOUT_XPATH        = '//*[@id="wrapper"]/div[4]/div/a'
 
 INTERVAL            = 10
+
+BROWSER_CHROME      = 'chrome'
+BROWSER_FIREFOX     = 'firefox'
+SUPPORTED_BROWSERS  = [BROWSER_CHROME, BROWSER_FIREFOX]
+DEFAULT_BROWSER     = BROWSER_CHROME
+
+FIREFOX_DRIVER_PATH = '~/geckodriver'
