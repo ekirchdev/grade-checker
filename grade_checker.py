@@ -33,7 +33,7 @@ class GradeChecker(object):
             try:
                 options = webdriver.FirefoxOptions()
                 options.add_argument('headless')
-                driver = webdriver.Firefox()
+                driver = webdriver.Firefox(options=options)
             except Exception as e:
                 logging.error(e)
                 return True
