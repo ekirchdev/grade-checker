@@ -12,5 +12,5 @@ args = ArgsParser.get_command_line_args()
 
 logging.info(f"Started check loop. Checking every {args.interval} minutes.")
 
-while not GradeChecker.grade_is_published(args.baseuri, args.user, args.passwd, args.module):
+while not GradeChecker.grade_is_published(args.baseuri, args.user, args.passwd, args.module, browser=args.browser):
     time.sleep((60 * args.interval))

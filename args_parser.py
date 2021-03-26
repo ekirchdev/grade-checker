@@ -26,11 +26,16 @@ class ArgsParser(object):
         parser.add_argument('--baseuri', '-b', type=str,
                             help='The url of your grade management system. Default: %s' % cfg.WEBSITE_URI,
                             default=cfg.WEBSITE_URI)
+        parser.add_argument('--browser', '-x', type=str, help='Options: Firefox or Chrome.', default=cfg.DEFAULT_BROWSER)
+
         args = parser.parse_args()
 
         if not validators.url(args.baseuri):
             raise ValueError("Given value for baseuri is not valid: %s" % args.baseuri)
         if not validators.between(args.interval, 1, 10.080):
             raise ValueError("Invalid interval value: %s" % str(args.interval))
+        args.broswer = args.browser.lower()
+        if args.broswer not in cfg.SUPPORTED_BROWSERS:
+            raise ValueError("Invalid option for --browser/-x: Use one of these: %s" % str(cfg.SUPPORTED_BROWSERS))
 
         return args

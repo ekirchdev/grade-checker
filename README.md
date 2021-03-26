@@ -13,7 +13,8 @@ about the published grade.
 ## Requirements
 
 * Python 3
-* Chrome Driver: https://chromedriver.chromium.org/downloads (Tool will be available for Firefox soon.)
+* Chrome Driver: https://chromedriver.chromium.org/downloads (tested with Chrome on Windows)
+* GeckoDriver: https://github.com/mozilla/geckodriver/releases (tested with Firefox on Ubuntu)
 
 ## Setup
 
@@ -21,6 +22,13 @@ about the published grade.
 pip install -r requirements
 ```
 
+- For Windows and Chrome, download the Chrome Driver and put the binary file on your PATH.
+- For Firefox and Unix, download the Gecko Driver and put the binary file on your PATH. If you use a server-side unix without a GUI, you need to execute the following commands to run the script headless:
+```shell script
+sudo apt-get install xvfb
+Xvfb :99 -ac &
+export DISPLAY=:99
+```
 ## Usage
 
 To execute the check, run the script with these required command line arguments:
