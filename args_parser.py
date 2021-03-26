@@ -28,6 +28,12 @@ class ArgsParser(object):
                             default=cfg.WEBSITE_URI)
         parser.add_argument('--browser', '-x', type=str, help='Options: Firefox or Chrome.', default=cfg.DEFAULT_BROWSER)
 
+        parser.add_argument('--smtp_server', '-s', type=str, help='SMTP server to send e-mails', default=None)
+        parser.add_argument('--sender', '-a', type=str, help='E-mail address of sender', default=None)
+        parser.add_argument('--receiver', '-r', type=str, help='E-mail address of sender', default=None)
+        parser.add_argument('--smtp_port', '-q', type=str, help='Port of stmp server', default=None)
+        parser.add_argument('--smtp_passwd', '-y', type=str, help='Password to send mails', default=None)
+
         args = parser.parse_args()
 
         if not validators.url(args.baseuri):
